@@ -7,17 +7,17 @@ export const teamMembers: TeamMember[] = [
     name: "Rakibul Islam Shakib",
     role: "",
     bio: "The dreamer who saw possibility where others saw limits.",
-    specialties: ["Product Strategy", "Development", "Cloud Architecture"],
-    socials: { github: "https://github.com/shakibbs", email: "rakibulislamshakib570@gmail.com" },
+    specialties: ["Product Strategy", "Full Stack-Development", "Cloud Architecture"],
+    socials: { github: "https://github.com/shakibbs", email: "shakib@nexelixtech.com" },
     image: "/images/team/shakib.jpg",
   },
   {
     id: "tm-2",
-    name: "Sajid Mahmud",
+    name: "Md.Sajid Mahamud",
     role: "",
     bio: "Turning ambition into reality through technology.",
-    specialties: ["Frontend Development", "React", "Next.js"], // keeping some placeholder specialties or empty
-    socials: { github: "https://github.com/saaaaajid", email: "sajidmahamud79@gmail.com" },
+    specialties: ["Angular", ".NET"], // keeping some placeholder specialties or empty
+    socials: { github: "https://github.com/saaaaajid", email: "sajid@nexelixtech.com" },
     image: "/images/team/sajid.jpg",
   },
   {
@@ -26,7 +26,7 @@ export const teamMembers: TeamMember[] = [
     role: "",
     bio: "Refused to wait for opportunity. Chose to create it.",
     specialties: ["Machine Learning", "Data Science", "Python"], // keeping placeholders
-    socials: { github: "https://github.com/Shimorikato123", email: "ehsanulrohan@gmail.com" },
+    socials: { github: "https://github.com/Shimorikato123", email: "rohan@nexelixtech.com" },
     image: "/images/team/rohan.jpg",
   },
   {
@@ -35,7 +35,7 @@ export const teamMembers: TeamMember[] = [
     role: "",
     bio: "Solving complex problems with simple solutions.",
     specialties: ["Backend Development", "System Design", "Databases"], // keeping placeholders
-    socials: { github: "https://github.com/alamin5g", email: "alaminvai5g@gmail.com" },
+    socials: { github: "https://github.com/alamin5g", email: "alamin@nexelixtech.com" },
     image: "/images/team/alamin.jpg",
   },
   {
@@ -44,7 +44,7 @@ export const teamMembers: TeamMember[] = [
     role: "",
     bio: "Building the future one solution at a time.",
     specialties: ["Marketing", "Problem Solving", "Cloud"], // placeholders
-    socials: { github: "#", email: "#" },
+    socials: { github: "#", email: "choton@nexelixtech.com" },
     image: "/images/team/ikhtear.jpg",
   },
 ];

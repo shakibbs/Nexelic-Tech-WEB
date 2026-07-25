@@ -59,14 +59,7 @@ export function Navbar() {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-lg p-2 text-foreground-muted transition-colors hover:text-foreground hover:bg-white/5"
-            aria-label="Toggle theme"
-          >
-            <Sun className="hidden h-5 w-5 dark:block" />
-            <Moon className="block h-5 w-5 dark:hidden" />
-          </button>
+
 
           <Link href="/contact" className="hidden sm:block">
             <Button size="sm">Start a Project</Button>

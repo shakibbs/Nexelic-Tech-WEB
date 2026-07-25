@@ -2,7 +2,7 @@
 export const siteConfig = {
   name: "Nexelix Tech",
   url: "https://nexelixtech.com",
-  email: "hello@nexelixtech.com",
+  email: "support@nexelixtech.com",
   description:
     "Next-gen software solutions agency specializing in bespoke web apps, AI integration, and mobile engineering.",
   // Cal.com embed identifier for discovery-call booking
@@ -10,6 +10,7 @@ export const siteConfig = {
   calcomEventSlug: process.env.NEXT_PUBLIC_CALCOM_EVENT_SLUG ?? "discovery-call",
   // Social links
   socials: {
+    facebook: "https://www.facebook.com/share/1DX9Gd1p8A",
     linkedin: "https://www.linkedin.com/company/nexelixtech",
     github: "https://github.com/nexelixtech",
     twitter: "https://twitter.com/nexelixtech",
