@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { services } from "@/data/services";
 import { caseStudies } from "@/data/case-studies";
 
+export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://nexelixtech.com"; // The production URL
 
