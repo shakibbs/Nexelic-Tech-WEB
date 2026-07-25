@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/*
+ * ============================================================================
+ * Nexelix Tech — Global Design System (Tailwind v4)
+ * ----------------------------------------------------------------------------
+ * Color tokens are engineered using color psychology for trust, technical
+ * superiority, and luxury. All foreground/background pairs are validated for
+ * WCAG AA contrast (4.5:1 for body text, 3:1 for large text / UI components).
+ * ============================================================================
+ */
+
+:root {
+  /* ---- Surfaces (Dark Mode default) ---- */
+  --background: #080b11; /* Deep Space Dark */
+  --surface: #0b0f19; /* Deep Obsidian / Midnight Blue */
+  --card: rgba(18, 24, 38, 0.7); /* Card Background (translucent) */
+  --card-solid: #121826; /* Non-blur fallback */
+  --border: rgba(255, 255, 255, 0.08); /* Border Overlay */
+
+  /* ---- Accent Glows ---- */
+  --accent-indigo: #6366f1; /* Electric Indigo — High Intellect & Trust */
+  --accent-cyan: #06b6d4; /* Cyber Cyan — Modernity & Innovation */
+  --accent-emerald: #10b981; /* Neon Emerald — Action & Growth */
+
+  /* ---- Foreground ---- */
+  --foreground: #f8fafc; /* near-white headline text (≈17:1 on bg) */
+  --foreground-muted: #94a3b8; /* slate-400 secondary text (5.9:1 on bg) */
+  --foreground-subtle: #64748b; /* slate-500 tertiary (4.3:1 — large only) */
+
+  /* ---- Gradients ---- */
+  --gradient-text: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  --gradient-accent: linear-gradient(90deg, #6366f1 0%, #06b6d4 50%, #10b981 100%);
+}
+
+@theme inline {
+  /* Map CSS variables into Tailwind theme so utilities like
+     bg-background, text-foreground, text-accent-cyan work out of the box */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-solid: var(--card-solid);
+  --color-border: var(--border);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-emerald: var(--accent-emerald);
+
+  /* Fonts (wired in app/layout.tsx via next/font) */
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-syne), var(--font-plus-jakarta), sans-serif;
+
+  /* Custom animations */
+  --animate-gradient: gradient-shift 8s ease infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Base layer
+ * -------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Visible focus ring for keyboard users (WCAG 2.4.7 — accessibility) */
+  :focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Respect reduced motion globally — disables hijacked scroll, animations,
+     and transitions for users with vestibular sensitivity (Issue 3 fix). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Utilities layer
+ * -------------------------------------------------------------------------- */
+@layer utilities {
+  /* Gradient text helper (use on the hero headline) */
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /*
+   * Glassmorphism card.
+   * NOTE: backdrop-filter is GPU-expensive on scroll. Use sparingly — only on
+   * hero badges, navbar, and 2-3 floating elements. For content-heavy grids,
+   * prefer .card-solid instead (see performance notes in analysis.md).
+   */
+  .glass-card {
+    background: rgba(18, 24, 38, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  /* Non-blur alternative — same look, far cheaper to paint on scroll */
+  .card-solid {
+    background: var(--card-solid);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  /* Animated gradient border that reveals on hover (cursor-tracking glow) */
+  .glow-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: var(--gradient-accent);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-border:hover::before,
+  .glow-border:focus-visible::before {
+    opacity: 1;
+  }
+
+  /* Offscreen render optimization for the long homepage (Issue 1 fix) */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+}

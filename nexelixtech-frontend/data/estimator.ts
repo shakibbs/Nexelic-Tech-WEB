@@ -1,0 +1,60 @@
+import { EstimatorOption } from "@/lib/types";
+
+export const estimatorOptions: EstimatorOption[] = [
+  {
+    id: "platform-web",
+    category: "platform",
+    label: "Web Application",
+    description: "Custom React/Next.js scalable web platform.",
+    basePriceUSD: 5000,
+    estimatedDays: 14,
+  },
+  {
+    id: "platform-mobile",
+    category: "platform",
+    label: "Mobile Application",
+    description: "Cross-platform iOS and Android app.",
+    basePriceUSD: 8000,
+    estimatedDays: 21,
+  },
+  {
+    id: "platform-ai",
+    category: "platform",
+    label: "AI Integration / RAG",
+    description: "Custom LLM agents and data pipelines.",
+    basePriceUSD: 10000,
+    estimatedDays: 30,
+  },
+  {
+    id: "scale-mvp",
+    category: "scale",
+    label: "MVP / Prototype",
+    description: "Core features to test market fit.",
+    basePriceUSD: 0,
+    estimatedDays: 0,
+  },
+  {
+    id: "scale-enterprise",
+    category: "scale",
+    label: "Enterprise Scale",
+    description: "High concurrency, SLAs, and complex RBAC.",
+    basePriceUSD: 15000,
+    estimatedDays: 45,
+  },
+  {
+    id: "feat-auth",
+    category: "features",
+    label: "Advanced Authentication",
+    description: "SSO, Biometrics, MFA integration.",
+    basePriceUSD: 2000,
+    estimatedDays: 7,
+  },
+  {
+    id: "feat-payments",
+    category: "features",
+    label: "Payment Gateway",
+    description: "Stripe/PayPal complex routing.",
+    basePriceUSD: 3000,
+    estimatedDays: 10,
+  },
+];
