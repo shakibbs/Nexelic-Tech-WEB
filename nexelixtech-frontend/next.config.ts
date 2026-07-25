@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/Nexelic-Tech-WEB",
   images: {
     unoptimized: true,
     remotePatterns: [
