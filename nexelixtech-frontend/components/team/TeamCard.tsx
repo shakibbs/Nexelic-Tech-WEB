@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { Link2, Code2, Send } from "lucide-react";
+import { Link2, Code2, Send, Mail } from "lucide-react";
+import Image from "next/image";
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion";
 import type { TeamMember } from "@/lib/types";
 
@@ -10,6 +11,7 @@ const socialIcons = {
   linkedin: Link2,
   github: Code2,
   twitter: Send,
+  email: Mail,
 } as const;
 
 // 3D tilt card — mouse tilt for mouse users, scale fallback for keyboard/touch
@@ -56,14 +58,27 @@ export function TeamCard({ member }: { member: TeamMember }) {
       className="glow-border relative overflow-hidden rounded-2xl card-solid p-6 outline-none"
     >
       {/* Avatar */}
-      <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-accent-indigo/30 to-accent-cyan/30">
-        <span className="font-display text-2xl font-bold text-white">
-          {member.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")}
-        </span>
-      </div>
+      {member.image && member.image !== "" && !member.image.endsWith(".svg") ? (
+        <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-2 border-accent-cyan/30">
+          <Image
+            src={member.image}
+            alt={member.name}
+            width={96}
+            height={96}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ) : (
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-accent-indigo/30 to-accent-cyan/30">
+          <span className="font-display text-2xl font-bold text-white">
+            {member.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .slice(0, 2)}
+          </span>
+        </div>
+      )}
 
       <h3 className="mt-4 text-center font-display text-lg font-semibold">
         {member.name}
@@ -92,7 +107,9 @@ export function TeamCard({ member }: { member: TeamMember }) {
           return (
             <a
               key={key}
-              href={href}
+              href={key === "email" ? `https://mail.google.com/mail/?view=cm&fs=1&to=${href}` : href}
+              target={key === "email" ? "_blank" : undefined}
+              rel={key === "email" ? "noopener noreferrer" : undefined}
               aria-label={`${member.name} on ${key}`}
               className="text-foreground-muted transition-colors hover:text-accent-cyan"
             >

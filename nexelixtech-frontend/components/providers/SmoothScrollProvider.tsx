@@ -1,8 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { ReactLenis, useLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
-import Lenis from "lenis";
+
+function RouteChangeHandler() {
+  const pathname = usePathname();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+      setTimeout(() => {
+        lenis.resize();
+      }, 150);
+    }
+  }, [pathname, lenis]);
+
+  return null;
+}
 
 // Lenis smooth-scroll wrapper (SRS §4.1).
 // Skips hijack when user prefers reduced motion.
@@ -11,48 +27,32 @@ export default function SmoothScrollProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const lenisRef = useRef<Lenis | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) return;
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    const rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
-    };
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mql.matches);
+    
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
   }, []);
 
-  // Reset scroll position on route changes and trigger a resize recalculation
-  useEffect(() => {
-    if (lenisRef.current) {
-      // Force scroll to top immediately without animation
-      lenisRef.current.scrollTo(0, { immediate: true });
-      
-      // Delay resize slightly to allow Next.js to render the new page content
-      setTimeout(() => {
-        lenisRef.current?.resize();
-      }, 100);
-    }
-  }, [pathname]);
+  if (prefersReducedMotion) {
+    return <>{children}</>;
+  }
 
-  return <>{children}</>;
+  return (
+    <ReactLenis 
+      root 
+      options={{
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      }}
+    >
+      <RouteChangeHandler />
+      {children}
+    </ReactLenis>
+  );
 }

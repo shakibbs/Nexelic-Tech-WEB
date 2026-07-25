@@ -14,7 +14,7 @@ export function Footer() {
         { label: "Web Development", href: "/services/custom-web-development" },
         { label: "Mobile Apps", href: "/services/mobile-app-development" },
         { label: "AI / ML", href: "/services/ai-ml-automation" },
-        { label: "UI/UX Design", href: "/services/ui-ux-product-design" },
+        { label: "Business Consultancy", href: "/services/business-consultancy" },
       ],
     },
     {

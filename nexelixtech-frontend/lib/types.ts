@@ -23,7 +23,7 @@ export interface TeamMember {
   role: string;
   bio: string;
   specialties: string[];
-  socials: { linkedin?: string; github?: string; twitter?: string };
+  socials: { linkedin?: string; github?: string; twitter?: string; email?: string };
   image: string;
 }
 

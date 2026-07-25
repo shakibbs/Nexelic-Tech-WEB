@@ -10,6 +10,7 @@ import {
   PenTool,
   Cloud,
   Building2,
+  Briefcase,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -23,6 +24,7 @@ const iconMap: Record<string, LucideIcon> = {
   PenTool,
   Cloud,
   Building2,
+  Briefcase,
 };
 
 // Mouse-tracking glow card (SRS §3.2 micro-interaction)

@@ -64,14 +64,23 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             {teamMembers.map((member) => (
               <div key={member.id} className="glass-card rounded-3xl p-6 text-center group">
-                <div className="mx-auto h-40 w-40 rounded-full overflow-hidden bg-surface-muted mb-6 ring-4 ring-surface">
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 text-indigo-200 text-4xl font-bold">
-                    {/* Fallback avatar since SVG might be missing */}
-                    {member.name.charAt(0)}
-                  </div>
+                <div className="mx-auto h-40 w-40 rounded-full overflow-hidden bg-surface-muted mb-6 ring-4 ring-surface relative">
+                  {member.image && member.image !== "" && !member.image.endsWith(".svg") ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 text-indigo-200 text-4xl font-bold">
+                      {/* Fallback avatar since SVG might be missing */}
+                      {member.name.charAt(0)}
+                    </div>
+                  )}
                 </div>
                 <h3 className="font-display text-xl font-bold text-white">{member.name}</h3>
                 <p className="text-sm text-accent-cyan font-medium mt-1 mb-4">{member.role}</p>
@@ -87,7 +96,12 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 flex-wrap">
+                  {member.socials.email && (
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.socials.email}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                      Gmail
+                    </a>
+                  )}
                   {member.socials.linkedin && (
                     <a href={member.socials.linkedin} className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
                       LinkedIn

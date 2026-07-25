@@ -1,7 +1,7 @@
 import { services, getServiceBySlug } from "@/data/services";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Globe, Smartphone, BrainCircuit, PenTool, Cloud, Building2, type LucideIcon } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Globe, Smartphone, BrainCircuit, PenTool, Cloud, Building2, Briefcase, type LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
   Globe,
@@ -10,6 +10,7 @@ const iconMap: Record<string, LucideIcon> = {
   PenTool,
   Cloud,
   Building2,
+  Briefcase,
 };
 
 export function generateStaticParams() {
