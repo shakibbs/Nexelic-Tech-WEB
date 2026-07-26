@@ -45,7 +45,7 @@ export function CaseStudiesCarousel() {
               transition={{ duration: 0.5 }}
               className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2"
             >
-              <div className="p-8 lg:p-16 flex flex-col justify-center h-full overflow-y-auto">
+              <div className="p-8 lg:p-16 flex flex-col h-full overflow-y-auto">
                 <div className="flex flex-wrap gap-4 mb-6">
                   <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium">
                     {activeStudy.industry}
@@ -63,10 +63,10 @@ export function CaseStudiesCarousel() {
                   {activeStudy.summary}
                 </p>
 
-                <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                   {activeStudy.metrics.map((metric, i) => (
                     <div key={i}>
-                      <div className="text-3xl font-bold text-emerald-400">{metric.value}</div>
+                      <div className="text-2xl sm:text-3xl font-bold text-emerald-400 break-words">{metric.value}</div>
                       <div className="text-sm text-foreground-muted mt-1">{metric.label}</div>
                     </div>
                   ))}

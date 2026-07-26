@@ -193,7 +193,11 @@
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  .glow-border:hover::before,
+  @media (hover: hover) {
+    .glow-border:hover::before {
+      opacity: 1;
+    }
+  }
   .glow-border:focus-visible::before {
     opacity: 1;
   }

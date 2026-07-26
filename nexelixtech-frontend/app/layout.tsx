@@ -83,7 +83,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${syne.variable} ${plusJakarta.variable} h-full antialiased overflow-x-hidden`}
       suppressHydrationWarning
     >
       <head>
@@ -92,7 +92,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navbar />

@@ -62,7 +62,7 @@ export function EstimatorWidget() {
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between items-center">
                   <span className="text-foreground-muted">Base Cost</span>
-                  <span className="font-semibold text-3xl text-purple-400">$</span>
+                  <span className="font-semibold text-3xl text-purple-400">${totalPrice.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-foreground-muted">Estimated Timeline</span>
