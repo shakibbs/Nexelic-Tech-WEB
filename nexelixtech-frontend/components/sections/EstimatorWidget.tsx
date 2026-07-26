@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { estimatorOptions } from '@/data/estimator';
+import { Button } from '@/components/ui/button';
 
 export function EstimatorWidget() {
   const [selectedOptions, setSelectedOptions] = useState<Set<string>>(new Set());
@@ -40,11 +41,11 @@ export function EstimatorWidget() {
                 <div
                   key={opt.id}
                   onClick={() => toggleOption(opt.id)}
-                  className={`glass-card p-6 rounded-2xl cursor-pointer transition-all duration-300 ${isSelected ? 'ring-2 ring-indigo-500 bg-white/5' : 'hover:bg-white/5'}`}
+                  className={`glass-card p-6 rounded-2xl cursor-pointer transition-all duration-300 ${isSelected ? 'ring-2 ring-purple-500 bg-white/5' : 'hover:bg-white/5'}`}
                 >
                   <div className="flex justify-between items-start">
                     <h3 className="font-semibold">{opt.label}</h3>
-                    <span className="text-sm bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-md">
+                    <span className="text-sm bg-purple-500/20 text-purple-300 px-2 py-1 rounded-md">
                       $
                     </span>
                   </div>
@@ -61,7 +62,7 @@ export function EstimatorWidget() {
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between items-center">
                   <span className="text-foreground-muted">Base Cost</span>
-                  <span className="font-semibold text-3xl text-indigo-400">$</span>
+                  <span className="font-semibold text-3xl text-purple-400">$</span>
                 </div>
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-foreground-muted">Estimated Timeline</span>
@@ -69,9 +70,9 @@ export function EstimatorWidget() {
                 </div>
               </div>
               
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-xl font-medium transition-colors mt-6">
+              <Button className="w-full mt-6 py-6 font-medium">
                 Export PDF Estimate
-              </button>
+              </Button>
             </div>
           </div>
         </div>

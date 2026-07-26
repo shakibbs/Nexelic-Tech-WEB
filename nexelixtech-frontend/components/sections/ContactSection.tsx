@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, CheckCircle2, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function ContactSection() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -59,7 +60,7 @@ export function ContactSection() {
             className="glass-card rounded-3xl p-8 glow-border flex flex-col items-center justify-center min-h-[500px]"
           >
             <div className="text-center">
-              <div className="w-16 h-16 bg-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <MessageSquare className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold mb-4">Book a Discovery Call</h3>
@@ -93,7 +94,7 @@ export function ContactSection() {
                 </p>
                 <button 
                   onClick={() => setStatus('idle')}
-                  className="mt-4 text-indigo-400 hover:text-indigo-300 font-medium"
+                  className="mt-4 text-purple-400 hover:text-purple-300 font-medium"
                 >
                   Send another message
                 </button>
@@ -103,17 +104,17 @@ export function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Name</label>
-                    <input required type="text" name="Name" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="John Doe" />
+                    <input required type="text" name="Name" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="John Doe" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Corporate Email</label>
-                    <input required type="email" name="Email" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="john@company.com" />
+                    <input required type="email" name="Email" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="john@company.com" />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Project Details</label>
-                  <textarea required name="Details" rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tell us about your requirements..."></textarea>
+                  <textarea required name="Details" rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Tell us about your requirements..."></textarea>
                 </div>
 
                 {status === 'error' && (
@@ -121,10 +122,10 @@ export function ContactSection() {
                 )}
 
                 <div className="pt-2">
-                  <button 
+                  <Button 
                     type="submit" 
                     disabled={status === 'loading'}
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-3 rounded-xl font-medium transition-colors flex justify-center items-center gap-2"
+                    className="w-full flex justify-center items-center gap-2"
                   >
                     {status === 'loading' ? (
                       <>
@@ -134,7 +135,7 @@ export function ContactSection() {
                     ) : (
                       'Send Message'
                     )}
-                  </button>
+                  </Button>
                 </div>
               </form>
             )}

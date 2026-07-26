@@ -6,11 +6,11 @@ type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-gradient-to-r from-accent-indigo to-accent-cyan text-white hover:opacity-90 shadow-lg shadow-accent-indigo/20",
-  secondary: "card-solid text-foreground hover:border-white/20",
-  ghost: "text-foreground-muted hover:text-foreground hover:bg-white/5",
+    "bg-gradient-to-r from-purple-700 to-purple-500 text-white hover:opacity-90 hover:shadow-purple-500/40 shadow-lg shadow-purple-600/20",
+  secondary: "card-solid text-foreground hover:border-purple-500/50 hover:bg-purple-500/10",
+  ghost: "text-foreground-muted hover:text-white hover:bg-purple-500/10",
   outline:
-    "border border-border text-foreground hover:border-accent-cyan hover:text-accent-cyan",
+    "border border-border text-foreground hover:border-purple-500 hover:text-purple-400 hover:bg-purple-500/10",
 };
 
 const sizes: Record<Size, string> = {
@@ -35,7 +35,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan disabled:opacity-50 disabled:pointer-events-none",
+        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:opacity-50 disabled:pointer-events-none",
         variants[variant],
         sizes[size],
         className,
