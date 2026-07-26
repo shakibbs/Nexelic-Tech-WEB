@@ -2,6 +2,7 @@ import { caseStudies } from "@/data/case-studies";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Globe, Server, Code2, Cpu } from "lucide-react";
+import { ImageCarousel } from "@/components/ImageCarousel";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({
@@ -83,12 +84,8 @@ export default async function CaseStudyDetailPage({ params }: { params: Promise<
           </p>
         </div>
         
-        <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden mb-16 glow-border relative">
-          <img 
-            src={study.image} 
-            alt={study.title} 
-            className="w-full h-full object-cover"
-          />
+        <div className="w-full mb-16 relative">
+          <ImageCarousel images={[study.image, ...(study.galleryImages || [])]} title={study.title} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
@@ -106,6 +103,19 @@ export default async function CaseStudyDetailPage({ params }: { params: Promise<
                 {study.solution}
               </p>
             </div>
+            
+            {study.extraSections && study.extraSections.map((section, idx) => (
+              <div key={idx}>
+                <h2 className="text-3xl font-display font-bold text-white mb-6">{section.title}</h2>
+                <div className="space-y-4">
+                  {section.content.map((paragraph, pIdx) => (
+                    <p key={pIdx} className="text-lg text-foreground-muted leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
             
             <div className="glass-card p-8 rounded-2xl bg-gradient-to-br from-surface to-surface-muted/50 border border-border">
               <h3 className="text-2xl font-bold text-white mb-6">Key Results</h3>
@@ -150,6 +160,8 @@ export default async function CaseStudyDetailPage({ params }: { params: Promise<
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
     </>

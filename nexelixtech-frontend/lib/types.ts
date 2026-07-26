@@ -40,6 +40,8 @@ export interface CaseStudy {
   techStack: string[];
   image: string;
   demoUrl?: string;
+  extraSections?: { title: string; content: string[] }[];
+  galleryImages?: string[];
 }
 
 // Estimator option (SRS §10)
