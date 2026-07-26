@@ -4,38 +4,25 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, CheckCircle2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/lib/config';
 
 export function ContactSection() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
-
+    
     const formData = new FormData(e.currentTarget);
-    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+    const name = formData.get('Name') as string;
+    const email = formData.get('Email') as string;
+    const details = formData.get('Details') as string;
 
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
+    const subject = encodeURIComponent(`New RFP from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Details:\n${details}`);
 
-      const result = await res.json();
-
-      if (!result.success) {
-        throw new Error(result.message || 'Failed to send message');
-      }
-
-      setStatus('success');
-      (e.target as HTMLFormElement).reset();
-    } catch (err: any) {
-      console.error(err);
-      setStatus('error');
-      setErrorMessage(err.message || 'Something went wrong.');
-    }
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.email}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
   };
 
   return (
