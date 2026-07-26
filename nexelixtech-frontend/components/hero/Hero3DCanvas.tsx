@@ -10,7 +10,11 @@ import { useDeviceCapabilities } from "@/lib/hooks/use-device-capabilities";
 const count = 1500;
 const globalPositions = new Float32Array(count * 3);
 for (let i = 0; i < count; i++) {
-  const r = Math.random() * 3;
+  // Create a hollow sphere to leave the center empty for text readability
+  const minRadius = 1.5;
+  const maxRadius = 4;
+  // Use cube root for uniform volume distribution, or just simple addition for a denser inner shell
+  const r = minRadius + Math.random() * (maxRadius - minRadius);
   const theta = Math.random() * Math.PI * 2;
   const phi = Math.acos(Math.random() * 2 - 1);
   globalPositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
