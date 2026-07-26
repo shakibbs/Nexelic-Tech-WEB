@@ -10,16 +10,16 @@ function Counter({
   prefix = "",
   suffix = "",
 }: {
-  value: number;
+  value: number | string;
   prefix?: string;
   suffix?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState<number | string>(typeof value === "number" ? 0 : value);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || typeof value !== "number") return;
     const duration = 2000;
     const start = performance.now();
 

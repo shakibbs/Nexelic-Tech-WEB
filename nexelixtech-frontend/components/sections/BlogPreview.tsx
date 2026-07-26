@@ -18,7 +18,7 @@ export function BlogPreview() {
               Technical deep dives and architectural patterns from our engineering team.
             </p>
           </div>
-          <Link href="/blog" className="hidden sm:flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+          <Link href="/blog" className="hidden sm:flex relative z-10 items-center gap-2 text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
             View all articles <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -31,6 +31,7 @@ export function BlogPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="relative z-10"
             >
               <Link href={`/blog/${post.slug}`} className="block h-full">
                 <article className="glass-card flex flex-col h-full rounded-2xl overflow-hidden hover:ring-2 ring-indigo-500/50 transition-all duration-300 group">
@@ -73,7 +74,7 @@ export function BlogPreview() {
           ))}
         </div>
         
-        <div className="mt-10 sm:hidden">
+        <div className="mt-10 sm:hidden relative z-10">
           <Link href="/blog" className="flex items-center justify-center gap-2 text-indigo-400 font-medium">
             View all articles <ArrowRight className="w-4 h-4" />
           </Link>

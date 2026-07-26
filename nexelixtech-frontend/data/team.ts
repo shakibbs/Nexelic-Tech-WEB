@@ -13,7 +13,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "tm-2",
-    name: "Md.Sajid Mahamud",
+    name: "Md. Sajid Mahamud",
     role: "",
     bio: "Turning ambition into reality through technology.",
     specialties: ["Angular", ".NET"], // keeping some placeholder specialties or empty
@@ -31,7 +31,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "tm-4",
-    name: "Alamin",
+    name: "Md Al Amin",
     role: "",
     bio: "Solving complex problems with simple solutions.",
     specialties: ["Backend Development", "System Design", "Databases"], // keeping placeholders

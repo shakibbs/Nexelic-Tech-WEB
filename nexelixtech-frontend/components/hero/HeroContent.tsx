@@ -50,7 +50,7 @@ export function HeroContent() {
 
       <motion.p
         variants={item}
-        className="mx-auto mt-6 max-w-2xl text-base text-foreground-muted sm:text-lg"
+        className="mx-auto mt-6 max-w-2xl text-base text-slate-300 sm:text-lg"
       >
         Bespoke web applications, AI integrations, and mobile apps engineered for
         speed, scale, and security — delivered in weeks, not months.

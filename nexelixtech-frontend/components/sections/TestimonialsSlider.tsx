@@ -61,14 +61,29 @@ export function TestimonialsSlider() {
                 </p>
                 
                 <div className="flex items-center gap-4">
-                  <img
-                    src={current.avatar}
-                    alt={current.author}
-                    className="w-14 h-14 rounded-full object-cover ring-2 ring-indigo-500/30"
-                  />
+                  {current.avatar ? (
+                    <img
+                      src={current.avatar}
+                      alt={current.author}
+                      className="w-14 h-14 rounded-full object-cover ring-2 ring-indigo-500/30"
+                    />
+                  ) : (
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500/30 to-cyan-500/30 ring-2 ring-indigo-500/30">
+                      <span className="font-display text-xl font-bold text-white">
+                        {current.author
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase()}
+                      </span>
+                    </div>
+                  )}
                   <div className="text-left">
                     <div className="font-semibold">{current.author}</div>
-                    <div className="text-sm text-foreground-muted">{current.role}, {current.company}</div>
+                    <div className="text-sm text-foreground-muted">
+                      {current.role}{current.company ? `, ${current.company}` : ''}
+                    </div>
                   </div>
                 </div>
               </motion.div>

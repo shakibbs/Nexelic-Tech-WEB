@@ -74,17 +74,12 @@ export default function Home() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-foreground-muted">
             Let&apos;s architect your next-gen software solution. Book a free
-            discovery call or estimate your project in minutes.
+            discovery call to get started.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/contact">
               <Button size="lg">
                 Start a Project <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/calculator">
-              <Button variant="outline" size="lg">
-                Estimate Cost
               </Button>
             </Link>
           </div>

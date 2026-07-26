@@ -45,7 +45,7 @@ export function EstimatorWidget() {
                   <div className="flex justify-between items-start">
                     <h3 className="font-semibold">{opt.label}</h3>
                     <span className="text-sm bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-md">
-                      ${opt.basePriceUSD.toLocaleString()}
+                      $
                     </span>
                   </div>
                   <p className="text-sm text-foreground-muted mt-2">{opt.description}</p>
@@ -61,7 +61,7 @@ export function EstimatorWidget() {
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between items-center">
                   <span className="text-foreground-muted">Base Cost</span>
-                  <span className="font-semibold text-3xl text-indigo-400">${totalPrice.toLocaleString()}</span>
+                  <span className="font-semibold text-3xl text-indigo-400">$</span>
                 </div>
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-foreground-muted">Estimated Timeline</span>

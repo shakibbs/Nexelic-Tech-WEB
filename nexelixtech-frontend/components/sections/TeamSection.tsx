@@ -17,7 +17,7 @@ export function TeamSection() {
             Meet the leadership behind our zero-tech-debt guarantee.
           </p>
         </div>
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {teamMembers.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}

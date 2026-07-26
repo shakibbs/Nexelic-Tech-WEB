@@ -1,9 +1,42 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare } from 'lucide-react';
+import { MessageSquare, CheckCircle2, Loader2 } from 'lucide-react';
 
 export function ContactSection() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await res.json();
+
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to send message');
+      }
+
+      setStatus('success');
+      (e.target as HTMLFormElement).reset();
+    } catch (err: any) {
+      console.error(err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Something went wrong.');
+    }
+  };
+
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -34,7 +67,7 @@ export function ContactSection() {
                 Schedule a 30-minute technical consultation directly with our engineering leadership to discuss your architecture and requirements.
               </p>
               <button className="bg-white text-black hover:bg-slate-200 px-8 py-3 rounded-xl font-medium transition-colors">
-                Open Calendar (Cal.com)
+                Open Calender(Upcoming)
               </button>
             </div>
           </motion.div>
@@ -48,39 +81,63 @@ export function ContactSection() {
             className="glass-card rounded-3xl p-8 lg:p-12 glow-border"
           >
             <h3 className="text-2xl font-bold mb-6">Submit an RFP</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Name</label>
-                  <input type="text" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="John Doe" />
+            
+            {status === 'success' ? (
+              <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center space-y-4">
+                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Corporate Email</label>
-                  <input type="email" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="john@company.com" />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Project Budget Range</label>
-                <select className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-foreground">
-                  <option value="">Select a range...</option>
-                  <option value="5k-15k">$5k - $15k (MVP)</option>
-                  <option value="15k-50k">$15k - $50k (Platform Build)</option>
-                  <option value="50k+">$50k+ (Enterprise)</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Project Details</label>
-                <textarea rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tell us about your requirements..."></textarea>
-              </div>
-
-              <div className="pt-2">
-                <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-medium transition-colors">
-                  Send Message
+                <h4 className="text-xl font-bold">Message Sent!</h4>
+                <p className="text-foreground-muted">
+                  Thanks for reaching out. We'll get back to you within 24 hours.
+                </p>
+                <button 
+                  onClick={() => setStatus('idle')}
+                  className="mt-4 text-indigo-400 hover:text-indigo-300 font-medium"
+                >
+                  Send another message
                 </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Name</label>
+                    <input required type="text" name="Name" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="John Doe" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Corporate Email</label>
+                    <input required type="email" name="Email" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="john@company.com" />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Project Details</label>
+                  <textarea required name="Details" rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tell us about your requirements..."></textarea>
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-red-400 text-sm font-medium">{errorMessage}</p>
+                )}
+
+                <div className="pt-2">
+                  <button 
+                    type="submit" 
+                    disabled={status === 'loading'}
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-3 rounded-xl font-medium transition-colors flex justify-center items-center gap-2"
+                  >
+                    {status === 'loading' ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

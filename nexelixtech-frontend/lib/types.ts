@@ -88,7 +88,7 @@ export interface BlogPost {
 export interface StatItem {
   id: string;
   label: string;
-  value: number;
+  value: number | string;
   suffix: string;
   prefix?: string;
 }
