@@ -41,6 +41,20 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Nexelix Tech" }],
   creator: "Nexelix Tech",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -49,12 +63,21 @@ export const metadata: Metadata = {
     title: "Nexelix Tech — Next-Gen Software Solutions Agency",
     description:
       "Bespoke web applications, AI integrations, and mobile apps engineered for speed, scale, and security.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexelix Tech — Next-Gen Software Solutions Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nexelix Tech — Next-Gen Software Solutions Agency",
     description:
       "Bespoke web applications, AI integrations, and mobile apps engineered for speed, scale, and security.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
