@@ -65,7 +65,7 @@ export const metadata: Metadata = {
       "Bespoke web applications, AI integrations, and mobile apps engineered for speed, scale, and security.",
     images: [
       {
-        url: "/og-image.png",
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Nexelix Tech — Next-Gen Software Solutions Agency",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     title: "Nexelix Tech — Next-Gen Software Solutions Agency",
     description:
       "Bespoke web applications, AI integrations, and mobile apps engineered for speed, scale, and security.",
-    images: ["/og-image.png"],
+    images: [`${siteUrl}/og-image.png`],
   },
   robots: {
     index: true,
