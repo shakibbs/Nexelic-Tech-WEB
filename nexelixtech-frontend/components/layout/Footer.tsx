@@ -40,7 +40,7 @@ export function Footer() {
     {
       title: "Resources",
       links: [
-        { label: "Cost Calculator", href: "/calculator" },
+        // { label: "Cost Calculator", href: "/calculator" },
         { label: "Contact", href: "/contact" },
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },

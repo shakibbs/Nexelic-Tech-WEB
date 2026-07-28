@@ -1,4 +1,4 @@
-import { EstimatorWidget } from "@/components/sections/EstimatorWidget";
+// import { EstimatorWidget } from "@/components/sections/EstimatorWidget";
 
 export const metadata = {
   title: "Project Estimator | Nexelix Tech",
@@ -16,7 +16,7 @@ export default function CalculatorPage() {
           Get a transparent, instant estimate for your next-generation software build. Select the features and capabilities you need below.
         </p>
       </div>
-      <EstimatorWidget />
+      {/* <EstimatorWidget /> */}
     </div>
   );
 }

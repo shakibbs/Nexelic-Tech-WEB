@@ -12,7 +12,7 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.currentTarget);
     const name = formData.get('Name') as string;
     const company = formData.get('Company') as string;
@@ -69,7 +69,7 @@ export function ContactSection() {
             className="glass-card rounded-3xl p-8 lg:p-12 glow-border"
           >
             <h3 className="text-2xl font-bold mb-6">Submit an RFP</h3>
-            
+
             {status === 'success' ? (
               <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center space-y-4">
                 <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center">
@@ -79,7 +79,7 @@ export function ContactSection() {
                 <p className="text-foreground-muted">
                   Thanks for reaching out. We'll get back to you within 24 hours.
                 </p>
-                <button 
+                <button
                   onClick={() => setStatus('idle')}
                   className="mt-4 text-purple-400 hover:text-purple-300 font-medium"
                 >
@@ -98,7 +98,7 @@ export function ContactSection() {
                     <input required type="text" name="Company" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Acme Inc." />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Project Details</label>
                   <textarea required name="Details" rows={4} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Tell us about your requirements..."></textarea>
@@ -109,8 +109,8 @@ export function ContactSection() {
                 )}
 
                 <div className="pt-2">
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={status === 'loading'}
                     className="w-full flex justify-center items-center gap-2"
                   >

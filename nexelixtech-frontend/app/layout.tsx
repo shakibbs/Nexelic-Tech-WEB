@@ -95,7 +95,8 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Nexelix Tech",
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    logo: `${siteUrl}/icon-512.png`,
+    image: `${siteUrl}/icon-512.png`,
     description: metadata.description,
     sameAs: [
       "https://twitter.com/nexelixtech",
@@ -110,6 +111,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

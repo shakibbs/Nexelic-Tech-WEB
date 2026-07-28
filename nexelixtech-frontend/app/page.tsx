@@ -8,7 +8,7 @@ import { ComparisonMatrix } from "@/components/sections/ComparisonMatrix";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { TechStackRadar } from "@/components/sections/TechStackRadar";
-import { EstimatorWidget } from "@/components/sections/EstimatorWidget";
+// import { EstimatorWidget } from "@/components/sections/EstimatorWidget";
 import { CaseStudiesCarousel } from "@/components/sections/CaseStudiesCarousel";
 import { TestimonialsSlider } from "@/components/sections/TestimonialsSlider";
 import { BlogPreview } from "@/components/sections/BlogPreview";
@@ -42,7 +42,7 @@ export default function Home() {
       <TechStackRadar />
 
       {/* S8: Cost & Timeline Estimator */}
-      <EstimatorWidget />
+      {/* <EstimatorWidget /> */}
 
       {/* S9: Case Studies */}
       <CaseStudiesCarousel />
