@@ -14,7 +14,7 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 glass-card border-b border-border">
+    <header className="fixed top-0 inset-x-0 z-50 bg-surface border-b border-border">
       {/* Skip link for keyboard users */}
       <a
         href="#main"
@@ -28,8 +28,12 @@ export function Navbar() {
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <Link
+        <a
           href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/";
+          }}
           className="flex items-center gap-2"
         >
           <div className="relative h-8 w-40">
@@ -41,7 +45,7 @@ export function Navbar() {
               priority
             />
           </div>
-        </Link>
+        </a>
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-1 md:flex">
@@ -82,7 +86,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-border md:hidden",
+          "overflow-hidden border-t border-border md:hidden bg-surface",
           mobileOpen ? "max-h-96" : "max-h-0",
         )}
       >
