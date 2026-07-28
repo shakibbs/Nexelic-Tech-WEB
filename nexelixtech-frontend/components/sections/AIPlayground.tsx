@@ -48,20 +48,25 @@ export function AIPlayground() {
   };
 
   return (
-    <section className="cv-auto mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl text-center">
-        <p className="text-sm font-medium text-accent-cyan">Capabilities</p>
-        <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+    <section 
+      id="capabilities" 
+      className="relative z-10 bg-background scroll-mt-24 cv-auto mx-auto max-w-6xl px-4 py-16 sm:py-24 lg:px-8"
+    >
+      <div className="mx-auto max-w-2xl text-center px-2 sm:px-0">
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent-cyan">
+          Capabilities
+        </p>
+        <h2 className="mt-2 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
           Live AI Architecture
         </h2>
-        <p className="mt-4 text-foreground-muted">
+        <p className="mt-3 text-sm sm:text-base text-foreground-muted max-w-lg mx-auto">
           Watch how our custom RAG (Retrieval-Augmented Generation) pipeline processes data as you scroll.
         </p>
       </div>
 
       <div 
         ref={containerRef}
-        className="mt-16 overflow-hidden rounded-2xl card-solid p-8 sm:p-12 border border-border/50 relative"
+        className="mt-10 sm:mt-16 overflow-hidden rounded-2xl card-solid p-6 sm:p-12 border border-border/50 relative"
       >
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative z-10">
           {nodes.map((node, index) => {
@@ -82,7 +87,7 @@ export function AIPlayground() {
                 )}
                 {/* Connecting Line (Mobile) */}
                 {index < nodes.length - 1 && (
-                  <div className="md:hidden absolute top-[50%] left-8 w-[2px] h-[calc(100%+2rem)] bg-border z-[-1]">
+                  <div className="md:hidden absolute top-[50%] left-1/2 -translate-x-1/2 w-[2px] h-[calc(100%+2rem)] bg-border z-[-1]">
                     <motion.div
                       className="w-full bg-gradient-to-b from-accent-indigo to-accent-cyan"
                       style={{ height: getLineProgress(index) }}
@@ -91,16 +96,16 @@ export function AIPlayground() {
                 )}
 
                 <motion.div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-surface border ${
+                  className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-surface border ${
                     isActive ? "border-accent-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)]" : "border-border"
                   } transition-colors duration-300`}
                   animate={{
                     scale: isActive ? 1.1 : 1,
                   }}
                 >
-                  <Icon className={`h-8 w-8 transition-colors duration-300 ${isActive || isPast ? node.color : "text-foreground-muted"}`} />
+                  <Icon className={`h-7 w-7 sm:h-8 sm:w-8 transition-colors duration-300 ${isActive || isPast ? node.color : "text-foreground-muted"}`} />
                 </motion.div>
-                <p className={`mt-4 font-display text-sm font-semibold transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground-muted"}`}>
+                <p className={`mt-3 font-display text-xs sm:text-sm font-semibold transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground-muted"}`}>
                   {node.label}
                 </p>
               </div>

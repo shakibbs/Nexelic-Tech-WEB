@@ -87,7 +87,7 @@ export function TechStackRadar() {
   );
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32 perspective-1000">
+    <section className="relative z-10 bg-background border-b border-border overflow-hidden py-24 sm:py-32 perspective-1000">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">

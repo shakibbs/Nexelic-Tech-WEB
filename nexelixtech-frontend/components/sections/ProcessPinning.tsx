@@ -33,20 +33,26 @@ export function ProcessPinning() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      const scrollWidth = panelRef.current?.scrollWidth || 0;
-      const amountToScroll = scrollWidth - window.innerWidth;
-      
-      gsap.to(panelRef.current, {
-        x: -amountToScroll,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 0.5,
-          // "+=100%" means it takes exactly 1 screen height of scrolling to finish all 4 steps.
-          // This makes each step change extremely fast.
-          end: "+=100%",
-        },
+      const mm = gsap.matchMedia();
+
+      // Only pin and horizontally scroll on desktop screen sizes (768px+)
+      mm.add("(min-width: 768px)", () => {
+        const scrollWidth = panelRef.current?.scrollWidth || 0;
+        const amountToScroll = scrollWidth - window.innerWidth;
+        
+        gsap.to(panelRef.current, {
+          x: -amountToScroll,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 0.5,
+            end: "+=150%",
+            invalidateOnRefresh: true,
+          },
+        });
       });
     }, sectionRef);
 
@@ -57,22 +63,24 @@ export function ProcessPinning() {
     <section
       ref={sectionRef}
       id="process"
-      className="border-y border-border bg-surface/50 h-screen flex flex-col overflow-hidden relative"
+      className="relative z-10 scroll-mt-20 border-y border-border bg-background md:h-screen flex flex-col md:overflow-hidden py-12 md:py-0 md:pt-20"
     >
-      <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 shrink-0">
-        <p className="text-sm font-medium text-accent-cyan">How We Work</p>
-        <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 md:py-8 sm:px-6 lg:px-8 shrink-0 text-center">
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent-cyan">
+          How We Work
+        </p>
+        <h2 className="mt-2 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
           From Idea to Deploy in 4 Steps
         </h2>
       </div>
 
-      <div className="flex-1 w-full relative">
+      <div className="flex-1 w-full relative flex items-center justify-center pb-8 md:pb-12">
         <div
           ref={panelRef}
           className={
             prefersReducedMotion
               ? "mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-16 h-auto overflow-y-auto"
-              : "absolute top-0 left-0 flex h-full w-[400vw]"
+              : "md:absolute md:top-0 md:left-0 flex flex-col md:flex-row h-auto md:h-full w-full md:w-[400vw] gap-6 md:gap-0 px-4 md:px-0 max-w-xl md:max-w-none mx-auto items-center"
           }
         >
           {processSteps.map((step) => {
@@ -80,23 +88,21 @@ export function ProcessPinning() {
             return (
               <div
                 key={step.id}
-                className={
-                  prefersReducedMotion
-                    ? "card-solid rounded-2xl p-8"
-                    : "flex h-full w-screen items-center justify-center px-8"
-                }
+                className="flex md:h-full w-full md:w-screen items-center justify-center px-4 sm:px-8"
               >
-                <div className="max-w-md text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-indigo/20 to-accent-cyan/20">
+                <div className="card-solid glow-border rounded-3xl p-8 sm:p-12 border border-border/60 shadow-2xl max-w-xl w-full text-center relative overflow-hidden transition-all duration-300 hover:border-accent-cyan/40">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-indigo/20 to-accent-cyan/20 border border-accent-cyan/30 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
                     <Icon className="h-8 w-8 text-accent-cyan" aria-hidden="true" />
                   </div>
-                  <p className="mt-4 font-display text-sm font-bold text-accent-indigo">
+                  <p className="mt-6 font-display text-xs sm:text-sm font-bold tracking-widest uppercase text-accent-indigo">
                     Step 0{step.step}
                   </p>
-                  <h3 className="mt-2 font-display text-2xl font-bold">
+                  <h3 className="mt-2 font-display text-2xl sm:text-3xl font-bold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-foreground-muted">{step.description}</p>
+                  <p className="mt-4 text-sm sm:text-base text-foreground-muted leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               </div>
             );
