@@ -15,11 +15,11 @@ export function ContactSection() {
     
     const formData = new FormData(e.currentTarget);
     const name = formData.get('Name') as string;
-    const email = formData.get('Email') as string;
+    const company = formData.get('Company') as string;
     const details = formData.get('Details') as string;
 
     const subject = encodeURIComponent(`New RFP from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Details:\n${details}`);
+    const body = encodeURIComponent(`Name: ${name}\nCompany: ${company}\n\nProject Details:\n${details}`);
 
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.email}&su=${subject}&body=${body}`;
     window.open(gmailUrl, '_blank');
@@ -94,8 +94,8 @@ export function ContactSection() {
                     <input required type="text" name="Name" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="John Doe" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Corporate Email</label>
-                    <input required type="email" name="Email" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="john@company.com" />
+                    <label className="text-sm font-medium">Company Name</label>
+                    <input required type="text" name="Company" className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Acme Inc." />
                   </div>
                 </div>
                 
