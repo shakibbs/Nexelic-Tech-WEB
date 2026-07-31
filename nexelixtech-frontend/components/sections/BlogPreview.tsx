@@ -34,12 +34,12 @@ export function BlogPreview() {
               className="relative z-10"
             >
               <Link href={`/blog/${post.slug}`} className="block h-full">
-                <article className="glass-card flex flex-col h-full rounded-2xl overflow-hidden hover:ring-2 ring-indigo-500/50 transition-all duration-300 group">
+                <article className="glass-card flex flex-col h-full rounded-2xl overflow-hidden hover:ring-2 active:ring-2 ring-indigo-500/50 transition-all duration-300 group">
                   <div className="relative h-48 w-full overflow-hidden">
                     <img
                       src={post.coverImage}
                       alt={post.title}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover w-full h-full group-hover:scale-105 group-active:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
@@ -51,7 +51,7 @@ export function BlogPreview() {
                       ))}
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-400 group-active:text-indigo-400 transition-colors">
                       {post.title}
                     </h3>
                     

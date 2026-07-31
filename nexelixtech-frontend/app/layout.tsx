@@ -5,6 +5,7 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 
 // Display font — futuristic geometric sans-serif for headings (SRS §3.2)
 const syne = Syne({
@@ -128,6 +129,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <CookieBanner />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>

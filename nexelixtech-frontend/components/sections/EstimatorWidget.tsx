@@ -41,7 +41,7 @@ export function EstimatorWidget() {
                 <div
                   key={opt.id}
                   onClick={() => toggleOption(opt.id)}
-                  className={`glass-card p-6 rounded-2xl cursor-pointer transition-all duration-300 ${isSelected ? 'ring-2 ring-purple-500 bg-white/5' : 'hover:bg-white/5'}`}
+                  className={`glass-card p-6 rounded-2xl cursor-pointer transition-all duration-300 ${isSelected ? 'ring-2 ring-purple-500 bg-white/5' : 'hover:bg-white/5 active:bg-white/10 active:ring-1 active:ring-purple-500/40'}`}
                 >
                   <div className="flex justify-between items-start">
                     <h3 className="font-semibold">{opt.label}</h3>

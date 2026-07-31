@@ -90,7 +90,7 @@ export function ProcessPinning() {
                 key={step.id}
                 className="flex md:h-full w-full md:w-screen items-center justify-center px-4 sm:px-8"
               >
-                <div className="card-solid glow-border rounded-3xl p-8 sm:p-12 border border-border/60 shadow-2xl max-w-xl w-full text-center relative overflow-hidden transition-all duration-300 hover:border-accent-cyan/40">
+                <div className="card-solid glow-border rounded-3xl p-8 sm:p-12 border border-border/60 shadow-2xl max-w-xl w-full text-center relative overflow-hidden transition-all duration-300 hover:border-accent-cyan/40 active:border-accent-cyan/40">
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-indigo/20 to-accent-cyan/20 border border-accent-cyan/30 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
                     <Icon className="h-8 w-8 text-accent-cyan" aria-hidden="true" />
                   </div>

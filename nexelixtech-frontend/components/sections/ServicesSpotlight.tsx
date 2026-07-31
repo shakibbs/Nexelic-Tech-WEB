@@ -50,10 +50,26 @@ function ServiceCard({
       `radial-gradient(400px circle at ${x}px ${y}px, rgba(99, 102, 241, 0.15), transparent 80%)`,
   );
 
+  function updateSpotlight(clientX: number, clientY: number, currentTarget: HTMLElement) {
+    const rect = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - rect.left);
+    mouseY.set(clientY - rect.top);
+  }
+
   function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
+    updateSpotlight(e.clientX, e.clientY, e.currentTarget);
+  }
+
+  function onTouchMove(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches[0]) {
+      updateSpotlight(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
+  }
+
+  function onTouchStart(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches[0]) {
+      updateSpotlight(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
   }
 
   const Icon = iconMap[iconName] ?? Globe;
@@ -63,11 +79,14 @@ function ServiceCard({
       <motion.div
         ref={ref}
         onMouseMove={onMouseMove}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         whileHover={{ y: -4 }}
+        whileTap={{ scale: 0.98, y: -2 }}
         className="glow-border relative h-full overflow-hidden rounded-2xl card-solid p-6"
       >
         <motion.div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100"
           style={{ background }}
           aria-hidden="true"
         />

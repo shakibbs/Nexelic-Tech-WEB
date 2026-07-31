@@ -19,16 +19,32 @@ function TiltCard({ tech, index }: { tech: TechItem; index: number }) {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const updateTilt = (clientX: number, clientY: number) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const mouseX = clientX - rect.left;
+    const mouseY = clientY - rect.top;
     
     x.set((mouseX / width) - 0.5);
     y.set((mouseY / height) - 0.5);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    updateTilt(e.clientX, e.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches[0]) {
+      updateTilt(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches[0]) {
+      updateTilt(e.touches[0].clientX, e.touches[0].clientY);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -51,6 +67,10 @@ function TiltCard({ tech, index }: { tech: TechItem; index: number }) {
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleMouseLeave}
+      whileTap={{ scale: 0.95 }}
       style={{
         rotateX,
         rotateY,
@@ -58,7 +78,7 @@ function TiltCard({ tech, index }: { tech: TechItem; index: number }) {
       }}
       className={cn(
         "glass-card flex flex-col items-center justify-center p-6 rounded-2xl h-32 relative cursor-crosshair transition-colors duration-300",
-        tech.featured ? "ring-1 ring-accent-cyan/60 bg-accent-cyan/5 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:bg-accent-cyan/10" : "hover:bg-white/[0.04]"
+        tech.featured ? "ring-1 ring-accent-cyan/60 bg-accent-cyan/5 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:bg-accent-cyan/10 active:bg-accent-cyan/15" : "hover:bg-white/[0.04] active:bg-white/[0.08]"
       )}
     >
       {/* 3D Content wrapper - pushed towards the viewer */}

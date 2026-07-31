@@ -198,6 +198,8 @@
       opacity: 1;
     }
   }
+  .glow-border:active::before,
+  .glow-border:focus-within::before,
   .glow-border:focus-visible::before {
     opacity: 1;
   }

@@ -29,11 +29,27 @@ export function TeamCard({ member }: { member: TeamMember }) {
     damping: 20,
   });
 
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+  function updateTilt(clientX: number, clientY: number, currentTarget: HTMLElement) {
     if (prefersReducedMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set(e.clientX - rect.left - rect.width / 2);
-    y.set(e.clientY - rect.top - rect.height / 2);
+    const rect = currentTarget.getBoundingClientRect();
+    x.set(clientX - rect.left - rect.width / 2);
+    y.set(clientY - rect.top - rect.height / 2);
+  }
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    updateTilt(e.clientX, e.clientY, e.currentTarget);
+  }
+
+  function handleTouchMove(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches[0]) {
+      updateTilt(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
+  }
+
+  function handleTouchStart(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches[0]) {
+      updateTilt(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
   }
 
   function handleMouseLeave() {
@@ -45,7 +61,11 @@ export function TeamCard({ member }: { member: TeamMember }) {
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleMouseLeave}
       whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+      whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
       whileFocus={{ scale: 1.02 }}
       style={{
         rotateX: prefersReducedMotion ? 0 : rotateX,
@@ -111,7 +131,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
               target={key === "email" ? "_blank" : undefined}
               rel={key === "email" ? "noopener noreferrer" : undefined}
               aria-label={`${member.name} on ${key}`}
-              className="text-foreground-muted transition-colors hover:text-accent-cyan"
+              className="text-foreground-muted transition-colors hover:text-accent-cyan active:text-accent-cyan"
             >
               <Icon className="h-4 w-4" />
             </a>

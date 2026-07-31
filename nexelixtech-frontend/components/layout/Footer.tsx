@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Sparkles } from "lucide-react";
@@ -103,6 +105,16 @@ export function Footer() {
             <p className="text-xs text-foreground-subtle">
               © {year} {siteConfig.name}. All rights reserved.
             </p>
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-cookie-preferences"));
+                }
+              }}
+              className="text-xs text-foreground-muted hover:text-foreground hover:underline transition-colors"
+            >
+              Cookie Preferences
+            </button>
             <div className="flex items-center gap-4">
               <a
                 href={siteConfig.socials.facebook}
